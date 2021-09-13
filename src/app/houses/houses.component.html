@@ -1,0 +1,31 @@
+<div *ngIf="showLoader" class="loadingOverlay">
+  <div class="text-center" class="loadingSpinner text-center">
+      <img src="/assets/spinner.gif">
+  </div>
+</div>
+<br>
+<form>
+  <div class="input-group">
+    <input id="typeahead-basic" type="text" class="form-control ml-2" placeholder="Search Houses by name region or current lord" [formControl]="filter" />
+    <button class="btn btn-outline-primary my-2 my-sm-0" style="float: right" type="submit">Search houses</button>
+  </div>
+</form>
+<div class="row">
+  <div class="col-lg-2 col-md-2 py-2 d-flex align-items-stretch text-center" *ngFor="let house of filteredHouses | async">
+    <div class="card" >
+      <img class="card-img-top mx-auto" src="/assets/favicon.png" alt="Card image cap">
+      <div class="card-body d-flex flex-column justify-content-between">
+        <h3 class="card-title" style="text-align: center;">{{house.getName()}}</h3>
+        <p class="card-text"><strong>Region</strong> {{house.getRegion()}}<br>
+        <div class="col-md-12">
+          <a [routerLink]="['/house/detail', house.getName()]">
+            <button class="btn btn-primary" (click)=openModal(house)>More Details</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="text-center">
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
+  </div> -->
+</div>

@@ -1,0 +1,88 @@
+<div *ngIf="showLoader" class="loadingOverlay">
+  <div class="text-center" class="loadingSpinner text-center">
+      <img src="/assets/spinner.gif">
+  </div>
+</div>
+<div *ngIf="this.house">
+  <div class="modal-header">
+    <h4 class="modal-title">{{this.house.getName()}}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <div class="alert alert-primary" role="alert">
+      <strong>Region:</strong> {{this.house.getRegion()}}
+    </div>
+    <div class="alert alert-primary" role="alert" *ngIf="this.house.getCoatOfArms()">
+      <strong>Coat Of Arms:</strong> {{this.house.getCoatOfArms()}}
+    </div>
+    <div class="alert alert-primary" role="alert" *ngIf="this.house.getWords()">
+      <strong>Words:</strong> {{this.house.getWords()}}
+    </div>
+    <div class="alert alert-primary" role="alert" *ngIf="this.house.getTitles()[0].length !== 0">
+      <strong>Titles</strong>
+      <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Show All</button>
+      <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let title of this.house.getTitles()">{{title}}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="alert alert-primary" role="alert" *ngIf="this.house.getSeats()[0].length !== 0">
+      <strong>Seats</strong>
+      <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Show All</button>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let seat of this.house.getSeats()">{{seat}}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="alert alert-primary" role="alert" *ngIf="this.house.getCurrentLord()">
+      <strong>Current Lord:</strong> {{this.currentLordName}}
+    </div>
+    <div class="alert alert-primary" role="alert" *ngIf="this.house.getHeir()">
+      <strong>Heir:</strong> {{this.heirName}}
+    </div>
+    <div class="alert alert-primary" role="alert" *ngIf="this.house.getOverlord()">
+      <strong>Overlord:</strong> {{this.overLordName}}
+    </div>
+    <div class="alert alert-primary" role="alert" *ngIf="this.house.getFounded()">
+      <strong>Fonded:</strong> {{this.house.getFounded()}}
+    </div>
+    <div class="alert alert-primary" role="alert" *ngIf="this.house.getFounder()">
+      <strong>Founder:</strong> {{this.founderName}}
+    </div>
+    <div class="alert alert-primary" role="alert" *ngIf="this.house.getDiedOut()">
+      <strong>Died Out:</strong> {{this.house.getDiedOut()}}
+    </div>
+    <div class="alert alert-primary" role="alert" *ngIf="this.house.getAncestralWeapons()[0].length !== 0">
+      <strong>Ancestral Weapons</strong>
+      <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Show All</button>
+      <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let weapon of this.house.getAncestralWeapons()">{{weapon}}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="alert alert-primary" role="alert" *ngIf="this.house.getCadetBranches().length !== 0">
+      <strong>Cadet Branches</strong>
+      <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">Show All</button>
+      <div id="collapseFour" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let branch of this.cadetBranches">{{branch.getName()}}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="alert alert-primary" role="alert" *ngIf="this.house.getSwornMembers().length !== 0">
+      <strong>Sworn Members</strong>
+      <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">Show All</button>
+      <div id="collapseFive" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let sworn of this.swornMembers">{{sworn.getName()}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <p>Source: {{this.house.getUrl()}}</p>
+  </div>
+</div>
